@@ -4,6 +4,9 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
+    "db:drop": "node db/drop.js",
+    "db:create": "node db/create.js",
+    "db:seed": "node db/seed.js",
     "dev": "DEBUG=basic-express-boilerplate:* nodemon ./bin/www"
   },
   "dependencies": {
