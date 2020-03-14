@@ -1,5 +1,5 @@
 {
-  "name": "basic-express-boilerplate",
+  "name": "truck-monitor-server",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "db:drop": "node db/drop.js",
     "db:create": "node db/create.js",
     "db:seed": "node db/seed.js",
-    "dev": "DEBUG=basic-express-boilerplate:* nodemon ./bin/www"
+    "dev": "DEBUG=truck-monitor:* nodemon ./bin/www"
   },
   "dependencies": {
     "cors": "^2.8.5",

@@ -64,21 +64,3 @@ const createTables = async () => {
 };
 
 createTables();
-
-// const createPositionTable = new Promise((resolve, reject) => {
-//     const sql = `
-//             CREATE TABLE truck_position
-//                 (
-//                     id BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
-//                     trip_id BIGINT(10) NOT NULL,
-//                     coordinate POINT NOT NULL,
-//                     time TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//                     SPATIAL INDEX(coordinate),
-//                     FOREIGN KEY (trip_id) REFERENCES trip(id)
-//                 )
-//         `;
-//     connection.query(sql, err => {
-//         if (err) reject(err);
-//         resolve("Positions table created");
-//     });
-// });
