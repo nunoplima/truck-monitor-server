@@ -8,3 +8,4 @@ const connection = mysql.createConnection({
     database: process.env.MYSQL_DB,
 });
 module.exports = connection;
+
