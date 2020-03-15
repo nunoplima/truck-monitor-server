@@ -1,4 +1,10 @@
-# Express + MySQL boilerplate
+# M-A-N Truck Monitor
+
+ServiceCare On Road Full-Stack Code Exercise implementation proposal
+
+This project is deployed here: [https://truck-monitor-server.herokuapp.com](https://truck-monitor-server.herokuapp.com)<br />
+Front-end is deployed here: [https://m-a-n-truck-monitor.herokuapp.com](https://m-a-n-truck-monitor.herokuapp.com/)<br />
+Front-end repo here: [https://github.com/nunoplima/truck-monitor-client](https://github.com/nunoplima/truck-monitor-client)<br />
 
 ## Run the app locally (in development):
 ```
@@ -6,12 +12,17 @@ yarn dev
 ```
 note: there's a `yarn start` but that is for **production**
 
-## Add your MySQL credentials
-Create a file in the root of the project called `.env` with the following:
+## Create a DB and add your MySQL credentials
+Create locally a MySQL DB and add a file in the root of the project called `.env` with the following:
 
 ```
 MYSQL_HOST=your host
-MYSQL_USERNAME=your username
-MYSQL_PASSWORD=your password
+MYSQL_USER=your username
+MYSQL_PW=your password
 MYSQL_DB=your db name
+```
+
+## Create the tables and seed them
+```
+yarn db:create && yarn db:seed
 ```
