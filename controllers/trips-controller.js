@@ -31,7 +31,8 @@ const getTripByTruckId = (req, res, next) => {
 
 const getTripById = (req, res, next) => {
     const isActive = req.method === "POST" ? 1 : 0;
-    Trip.getByTripId(req.tripId, isActive, (err, results) => {
+    const trip_id = req.params.tripId ? req.params.tripId : req.tripId;
+    Trip.getByTripId(trip_id, isActive, (err, results) => {
         if (err) return next(err);
         req.trip = results;
         next();
