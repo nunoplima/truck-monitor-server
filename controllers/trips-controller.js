@@ -7,7 +7,7 @@ const rearrangeTrips = arr => (
             ...acc,
             [cur.plate]: [
                 ...(acc[cur.plate] || []),
-                { lat: cur.lat, lng: cur.lng, time: cur.time }
+                { lat: cur.lat.toString(), lng: cur.lng.toString(), time: cur.time }
             ],
         }
     ), {})
@@ -16,8 +16,22 @@ const rearrangeTrips = arr => (
 const getAllTrips = (req, res, next) => {
     Trip.getAll((err, results) => {
         if (err) return next(err);
-        res.status(200).json({ trips: Object.entries(rearrangeTrips(results)) });
+        req.trips = Object.entries(rearrangeTrips(results));
+        next();
     });
 };
 
-module.exports = { getAllTrips };
+const getTripByTruckId = (req, res, next) => {
+    Trip.getByTruckId(req.truckId, (err, results) => {
+        if (err) return next(err);
+        req.trips = results;
+        next();
+    });
+};
+
+const sendTrips = (req, res, next) => {
+    res.status(200).json({ trips: req.trips });
+};
+
+
+module.exports = { getAllTrips, getTripByTruckId, sendTrips };

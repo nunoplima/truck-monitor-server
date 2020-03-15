@@ -18,4 +18,15 @@ Trip.getAll = cb => {
     });
 };
 
+Trip.getByTruckId = (truckId, cb) => {
+    const sql = `
+        SELECT * FROM trip 
+        JOIN truck_position
+            ON trip.id = truck_position.trip_id
+        WHERE truck_id = ? AND trip.is_active = 1`;
+    connection.query(sql, truckId, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
 module.exports = Trip;
