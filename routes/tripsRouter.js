@@ -1,6 +1,14 @@
 const express = require("express");
 const tripsRouter = express.Router();
-const { getAllTrips, getTripByTruckId, getTripById, createTrip, sendTrips, sendTrip } = require("../controllers/trips-controller");
+const {
+    getAllTrips,
+    getTripByTruckId,
+    getTripById,
+    createTrip,
+    endTrip,
+    sendTrips,
+    sendTrip
+} = require("../controllers/trips-controller");
 const { getTruckIdByPlate, createTruck } = require("../controllers/trucks-controller");
 const { createTruckPosition } = require("../controllers/positions-controller");
 
@@ -15,5 +23,8 @@ tripsRouter.get("/:plate", getTruckIdByPlate, getTripByTruckId, sendTrip);
 
 // create a new trip
 tripsRouter.post("/", getTruckIdByPlate, createTruck, createTrip, createTruckPosition, getTripById, sendTrip);
+
+// end trip
+tripsRouter.put("/:tripId", endTrip, getTripById, sendTrip);
 
 module.exports = tripsRouter;
