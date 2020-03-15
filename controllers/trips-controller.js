@@ -24,14 +24,33 @@ const getAllTrips = (req, res, next) => {
 const getTripByTruckId = (req, res, next) => {
     Trip.getByTruckId(req.truckId, (err, results) => {
         if (err) return next(err);
-        req.trips = results;
+        req.trip = results[0];
         next();
     });
 };
 
-const sendTrips = (req, res, next) => {
-    res.status(200).json({ trips: req.trips });
+const getTripById = (req, res, next) => {
+    Trip.getByTripId(req.tripId, (err, results) => {
+        if (err) return next(err);
+        req.trip = results[0];
+        next();
+    });
+};
+
+const createTrip = (req, res, next) => {
+    Trip.create(req.truckId, (err, results) => {
+        if (err) return next(err);
+        req.tripId = results.insertId;
+        next();
+    });
+};
+
+const sendTrips = (req, res, next) => res.status(200).json({ trips: req.trips });
+
+const sendTrip = (req, res, next) => {
+    const status = req.method === "GET" ? 200 : 201;
+    res.status(status).json({ trip: req.trip });
 };
 
 
-module.exports = { getAllTrips, getTripByTruckId, sendTrips };
+module.exports = { getAllTrips, getTripByTruckId, getTripById, createTrip, sendTrips, sendTrip };
