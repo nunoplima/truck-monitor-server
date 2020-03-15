@@ -29,13 +29,13 @@ Trip.getByTruckId = (truckId, cb) => {
     });
 };
 
-Trip.getByTripId = (TripId, cb) => {
+Trip.getByTripId = (TripId, isActive, cb) => {
     const sql = `
         SELECT * FROM trip 
         JOIN truck_position
             ON trip.id = truck_position.trip_id
-        WHERE trip_id = ? AND trip.is_active = 1`;
-    connection.query(sql, TripId, (err, results, fields) => {
+        WHERE trip_id = ? AND trip.is_active = ?`;
+    connection.query(sql, [TripId, isActive], (err, results, fields) => {
         cb(err, results);
     });
 };
@@ -43,6 +43,13 @@ Trip.getByTripId = (TripId, cb) => {
 Trip.create = (truckId, cb) => {
     const sql = `INSERT INTO trip (truck_id) VALUES (?)`;
     connection.query(sql, truckId, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
+Trip.end = (tripId, cb) => {
+    const sql = `UPDATE trip SET is_active = 0 WHERE id = ?`;
+    connection.query(sql, tripId, (err, results, fields) => {
         cb(err, results);
     });
 };

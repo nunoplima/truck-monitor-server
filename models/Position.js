@@ -7,6 +7,6 @@ Position.create = (tripData, cb) => {
     connection.query(sql, [tripData], (err, results) => {
         cb(err, results);
     });
-}
+};
 
 module.exports = Position;
