@@ -8,21 +8,21 @@ Front-end repo here: [https://github.com/nunoplima/truck-monitor-client](https:/
 
 ## Run the app locally (in development):
 ```
-yarn dev
+yarn install && yarn dev
 ```
-note: there's a `yarn start` but that is for **production**
+Installs dependecies and runs the app in the development mode.
 
-## Create a DB and add your MySQL credentials
+### Create a DB and add your MySQL credentials
 Create locally a MySQL DB and add a file in the root of the project called `.env` with the following:
 
 ```
 MYSQL_HOST=your host
 MYSQL_USER=your username
 MYSQL_PW=your password
-MYSQL_DB=your db name
+MYSQL_DB=your DB name
 ```
 
-## Create the tables and seed them
+### Create the tables and seed them
 ```
 yarn db:create && yarn db:seed
 ```
