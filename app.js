@@ -3,6 +3,7 @@ const express = require("express");
 const logger = require("morgan");
 const cors = require("cors");
 
+const trucksRouter = require("./routes/trucksRouter");
 const tripsRouter = require("./routes/tripsRouter");
 
 const app = express();
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
+app.use("/trucks", trucksRouter);
 app.use("/trips", tripsRouter);
 
 // catch 404 and forward to error handler

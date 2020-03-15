@@ -1,11 +1,18 @@
 const express = require("express");
-const router = express.Router();
-const { getAllTrips } = require("../controllers/trips-controller");
+const tripsRouter = express.Router();
+const { getAllTrips, getTripByTruckId, sendTrips } = require("../controllers/trips-controller");
+const { getTruckIdByPlate } = require("../controllers/trucks-controller");
+
 
 // testing...
-router.get("/test", (req, res) => res.status(200).json({ message: "Server is live" }));
+tripsRouter.get("/test", (req, res) => res.status(200).json({ message: "Server is live" }));
 
 // get all active trips and respective postitions from all trucks
-router.get("/", getAllTrips);
+tripsRouter.get("/", getAllTrips, sendTrips);
 
-module.exports = router;
+// get specific truck's ongoing trip by plate 
+tripsRouter.get("/:plate", getTruckIdByPlate, getTripByTruckId, sendTrips);
+
+// create a new trip
+
+module.exports = tripsRouter;
