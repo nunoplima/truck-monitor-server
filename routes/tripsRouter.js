@@ -13,8 +13,6 @@ const {
 const { getTruckIdByPlate, createTruck } = require("../controllers/trucks-controller");
 const { createTruckPosition, deleteTruckPosition } = require("../controllers/positions-controller");
 
-// testing...
-tripsRouter.get("/test", (req, res) => res.status(200).json({ message: "Server is live" }));
 
 // get all active trips and respective postitions from all trucks
 tripsRouter.get("/", getAllTrips, sendTrips);
@@ -24,6 +22,9 @@ tripsRouter.get("/:plate", getTruckIdByPlate, getTripByTruckId, sendTrip);
 
 // create a new trip
 tripsRouter.post("/", getTruckIdByPlate, createTruck, createTrip, createTruckPosition, getTripById, sendTrip);
+
+// create a new truck position
+tripsRouter.post("/:tripId", createTruckPosition, getTripById, sendTrip)
 
 // end trip
 tripsRouter.put("/:tripId", endTrip, getTripById, sendTrip);
