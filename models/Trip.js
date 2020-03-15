@@ -29,4 +29,22 @@ Trip.getByTruckId = (truckId, cb) => {
     });
 };
 
+Trip.getByTripId = (TripId, cb) => {
+    const sql = `
+        SELECT * FROM trip 
+        JOIN truck_position
+            ON trip.id = truck_position.trip_id
+        WHERE trip_id = ? AND trip.is_active = 1`;
+    connection.query(sql, TripId, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
+Trip.create = (truckId, cb) => {
+    const sql = `INSERT INTO trip (truck_id) VALUES (?)`;
+    connection.query(sql, truckId, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
 module.exports = Trip;

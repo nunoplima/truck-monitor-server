@@ -19,4 +19,11 @@ Truck.getByPlate = (plate, cb) => {
     });
 };
 
+Truck.create = (plate, cb) => {
+    const sql = `INSERT INTO truck (plate) VALUES (?)`;
+    connection.query(sql, plate, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
 module.exports = Truck;
