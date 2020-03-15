@@ -6,11 +6,12 @@ const {
     getTripById,
     createTrip,
     endTrip,
+    deleteTrip,
     sendTrips,
     sendTrip
 } = require("../controllers/trips-controller");
 const { getTruckIdByPlate, createTruck } = require("../controllers/trucks-controller");
-const { createTruckPosition } = require("../controllers/positions-controller");
+const { createTruckPosition, deleteTruckPosition } = require("../controllers/positions-controller");
 
 // testing...
 tripsRouter.get("/test", (req, res) => res.status(200).json({ message: "Server is live" }));
@@ -26,5 +27,8 @@ tripsRouter.post("/", getTruckIdByPlate, createTruck, createTrip, createTruckPos
 
 // end trip
 tripsRouter.put("/:tripId", endTrip, getTripById, sendTrip);
+
+// delete trip
+tripsRouter.delete("/:tripId", deleteTruckPosition, deleteTrip);
 
 module.exports = tripsRouter;

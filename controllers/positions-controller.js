@@ -9,4 +9,12 @@ const createTruckPosition = (req, res, next) => {
     });
 };
 
-module.exports = { createTruckPosition };
+const deleteTruckPosition = (req, res, next) => {
+    Position.delete(req.params.tripId, (err, results) => {
+        if (err) return next(err);
+        req.tripId = req.params.tripId;
+        next();
+    });
+};
+
+module.exports = { createTruckPosition, deleteTruckPosition };

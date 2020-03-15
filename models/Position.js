@@ -9,4 +9,11 @@ Position.create = (tripData, cb) => {
     });
 };
 
+Position.delete = (tripId, cb) => {
+    const sql = `DELETE FROM truck_position WHERE trip_id = ?`;
+    connection.query(sql, tripId, (err, results) => {
+        cb(err, results);
+    });
+}
+
 module.exports = Position;
