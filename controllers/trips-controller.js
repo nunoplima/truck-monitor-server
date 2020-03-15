@@ -55,6 +55,13 @@ const endTrip = (req, res, next) => {
     });
 };
 
+const deleteTrip = (req, res, next) => {
+    Trip.delete(req.tripId, (err, results) => {
+        if (err) return next(err);
+        res.sendStatus(204);
+    });
+};
+
 const sendTrips = (req, res, next) => res.status(200).json({ trips: req.trips });
 
 const sendTrip = (req, res, next) => {
@@ -63,4 +70,4 @@ const sendTrip = (req, res, next) => {
 };
 
 
-module.exports = { getAllTrips, getTripByTruckId, getTripById, createTrip, endTrip, sendTrips, sendTrip };
+module.exports = { getAllTrips, getTripByTruckId, getTripById, createTrip, deleteTrip, endTrip, sendTrips, sendTrip };

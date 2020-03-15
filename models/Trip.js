@@ -54,4 +54,11 @@ Trip.end = (tripId, cb) => {
     });
 };
 
+Trip.delete = (tripId, cb) => {
+    const sql = `DELETE FROM trip WHERE id = ?`;
+    connection.query(sql, tripId, (err, results, fields) => {
+        cb(err, results);
+    });
+};
+
 module.exports = Trip;
